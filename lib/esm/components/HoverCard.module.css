@@ -1,0 +1,75 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Content {
+  font-family: inherit;
+  border-radius: var(--hovercard-radius, var(--popover-radius));
+  padding: var(--hovercard-padding, var(--popover-padding));
+  width: var(--hovercard-width, 20rem);
+  background-color: var(--hovercard-bg, var(--popover-bg));
+  box-shadow: var(--hovercard-shadow, var(--popover-shadow));
+  animation-duration: var(--transition-duration-normal);
+  animation-timing-function: var(--transition-easing);
+  will-change: transform, opacity;
+
+  &[data-side='top'] {
+    animation-name: slideDownAndFade;
+  }
+  &[data-side='right'] {
+    animation-name: slideLeftAndFade;
+  }
+  &[data-side='bottom'] {
+    animation-name: slideUpAndFade;
+  }
+  &[data-side='left'] {
+    animation-name: slideRightAndFade;
+  }
+}
+
+.Arrow {
+  fill: var(--hovercard-bg, var(--popover-bg));
+}
+
+@keyframes slideUpAndFade {
+  0% {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightAndFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDownAndFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftAndFade {
+  0% {
+    opacity: 0;
+    transform: translateX(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

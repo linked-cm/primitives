@@ -1,0 +1,52 @@
+@import '../components/helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Root {
+  width: var(--switch-track-width, --spacing(11));
+  height: var(--switch-track-height, --spacing(6));
+  background-color: var(--switch-track-bg, var(--color-gray-200));
+  border-radius: 9999px;
+  position: relative;
+  box-shadow: var(--switch-track-shadow, var(--shadow-sm));
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  transition: var(--transition-normal);
+
+  &:focus-visible {
+    @mixin focus;
+  }
+
+  &[data-state='checked'] {
+    background-color: var(--switch-track-bg-checked, var(--control-accent));
+  }
+}
+
+.Thumb {
+  display: block;
+  width: var(--switch-thumb-size, --spacing(5));
+  height: var(--switch-thumb-size, --spacing(5));
+  background-color: var(--switch-thumb-bg, var(--color-white));
+  border-radius: 50%;
+  box-shadow: var(--switch-thumb-shadow, 0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform var(--transition-normal);
+  transform: translateX(var(--switch-thumb-offset, --spacing(0.5)));
+  will-change: transform;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: calc(var(--switch-thumb-size, --spacing(5)) / -2);
+
+  &[data-state='checked'] {
+    transform: translateX(
+      calc(
+        var(--switch-track-width, --spacing(11)) -
+          var(--switch-thumb-size, --spacing(5)) -
+          var(--switch-thumb-offset, --spacing(0.5))
+      )
+    );
+  }
+
+  &:disabled {
+    @mixin disabled;
+  }
+}

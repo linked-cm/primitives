@@ -1,0 +1,75 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--form-gap, --spacing(4));
+  width: var(--form-width, 100%);
+}
+
+.Field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--form-field-gap, --spacing(2));
+}
+
+.Label {
+  font-size: var(--form-label-font-size, var(--typography-font-size));
+  font-weight: var(--form-label-font-weight, var(--typography-font-weight));
+  color: var(--form-label-text, var(--typography-color));
+  line-height: var(--form-label-line-height, var(--typography-line-height));
+}
+
+.Control {
+  display: flex;
+  flex-direction: column;
+  gap: var(--form-control-gap, --spacing(1));
+}
+
+.Message {
+  font-size: var(--form-message-font-size, var(--typography-small-size));
+  color: var(--form-message-text, var(--text-auxiliary));
+  line-height: var(
+    --form-message-line-height,
+    var(--typography-line-height-none)
+  );
+}
+
+.ValidityState {
+  font-size: var(--form-validity-font-size, var(--typography-small-size));
+  color: var(--form-validity-text, var(--text-auxiliary));
+  line-height: var(
+    --form-validity-line-height,
+    var(--typography-line-height-none)
+  );
+}
+
+.Submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--form-submit-radius, var(--control-radius));
+  font-size: var(--form-submit-font-size, var(--typography-font-size));
+  font-weight: var(--form-submit-font-weight, var(--typography-font-weight));
+  height: var(--form-submit-height, var(--control-height-md));
+  padding: var(--form-submit-padding, --spacing(2) --spacing(4));
+  transition: var(--transition-fast);
+  border: 1px solid var(--form-submit-border, var(--control-border));
+  background-color: var(--form-submit-bg, var(--control-bg));
+  color: var(--form-submit-text, var(--control-text));
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--form-submit-bg-hover, var(--control-bg-hover));
+    border-color: var(--form-submit-border-hover, var(--control-border-hover));
+  }
+
+  &:focus-visible {
+    @mixin focus;
+  }
+
+  &:disabled {
+    @mixin disabled;
+  }
+}

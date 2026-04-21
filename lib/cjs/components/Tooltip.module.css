@@ -1,0 +1,78 @@
+@import '../components/helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Content {
+  border-radius: var(--tooltip-radius, var(--popover-radius));
+  padding: var(--tooltip-padding-y, --spacing(2))
+    var(--tooltip-padding-x, --spacing(2));
+  font-size: var(--tooltip-font-size, var(--typography-small-size));
+  line-height: var(--tooltip-line-height, var(--typography-line-height-none));
+  color: var(--tooltip-text, var(--color-white));
+  background: var(--tooltip-bg, var(--color-gray-900));
+  box-shadow: var(--tooltip-shadow, var(--popover-shadow));
+  user-select: none;
+  animation-duration: var(--transition-duration-normal);
+  animation-timing-function: var(--transition-easing);
+  will-change: transform, opacity;
+
+  &[data-state='delayed-open'][data-side='top'] {
+    animation-name: slideDownAndFade;
+  }
+  &[data-state='delayed-open'][data-side='right'] {
+    animation-name: slideLeftAndFade;
+  }
+  &[data-state='delayed-open'][data-side='bottom'] {
+    animation-name: slideUpAndFade;
+  }
+  &[data-state='delayed-open'][data-side='left'] {
+    animation-name: slideRightAndFade;
+  }
+}
+
+.Arrow {
+  fill: var(--tooltip-bg, var(--color-gray-900));
+}
+
+@keyframes slideUpAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

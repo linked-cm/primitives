@@ -1,0 +1,87 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background-color: var(--drawer-overlay-bg, var(--modal-overlay-bg));
+}
+
+.Content {
+  position: fixed;
+  inset-x: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--drawer-radius, var(--modal-radius));
+  background-color: var(--drawer-bg, var(--modal-bg));
+  padding: var(--drawer-padding, var(--modal-padding));
+
+  &[vaul-drawer-direction='right'],
+  &[vaul-drawer-direction='left'] {
+    height: 100%;
+    min-width: var(--drawer-min-width, 350px);
+  }
+
+  &[vaul-drawer-direction='top'],
+  &[vaul-drawer-direction='bottom'] {
+    height: auto;
+    width: 100%;
+  }
+
+  &[vaul-drawer-direction='right'] {
+    right: 0;
+  }
+
+  &[vaul-drawer-direction='left'] {
+    left: 0;
+  }
+
+  &[vaul-drawer-direction='top'] {
+    top: 0;
+  }
+
+  &[vaul-drawer-direction='bottom'] {
+    bottom: 0;
+  }
+}
+
+.Handle {
+  margin: --spacing(4) auto 0;
+  height: --spacing(2);
+  width: var(--drawer-handle-width, 100px);
+  border-radius: var(--drawer-handle-radius, var(--modal-radius));
+  background-color: var(--drawer-handle-bg, var(--border-default));
+}
+
+.Header {
+  display: grid;
+  gap: --spacing(1);
+  text-align: center;
+  margin-bottom: --spacing(4);
+
+  @media (min-width: 640px) {
+    text-align: left;
+  }
+}
+
+.Footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: --spacing(2);
+}
+
+.Title {
+  font-size: var(--heading-5-font-size);
+  font-weight: var(--heading-5-font-weight);
+  line-height: var(--heading-5-line-height);
+  color: var(--heading-5-color);
+}
+
+.Description {
+  font-size: var(--typography-font-size);
+  line-height: var(--typography-line-height);
+  color: var(--typography-color);
+}

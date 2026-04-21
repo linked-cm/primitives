@@ -1,0 +1,101 @@
+.Root {
+  border-radius: var(--accordion-radius, var(--box-radius));
+  width: 100%;
+  background-color: var(--accordion-bg, var(--box-bg));
+  box-shadow: var(--accordion-shadow, var(--box-shadow));
+}
+
+.Item {
+  overflow: hidden;
+  margin-top: 1px;
+
+  &:first-child {
+    margin-top: 0;
+    border-top-left-radius: var(--accordion-radius, var(--box-radius));
+    border-top-right-radius: var(--accordion-radius, var(--box-radius));
+  }
+
+  &:last-child {
+    border-bottom-left-radius: var(--accordion-radius, var(--box-radius));
+    border-bottom-right-radius: var(--accordion-radius, var(--box-radius));
+  }
+
+  &:focus-within {
+    position: relative;
+    z-index: 1;
+    /* box-shadow: var(--accordion-shadow);*/
+  }
+}
+
+.Header {
+  display: flex;
+}
+
+.Trigger {
+  font-family: inherit;
+  background-color: transparent;
+  padding: 0 var(--accordion-padding, var(--box-padding));
+  height: var(--accordion-trigger-height, 2.75rem);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--accordion-trigger-font-size, var(--typography-small-size));
+  line-height: 1;
+  color: var(--box-text);
+  /* box-shadow: var(--accordion-shadow);*/
+  background-color: var(--accordion-bg, var(--box-bg));
+  transition: var(--transition-normal);
+
+  &:hover {
+    background-color: var(--accordion-bg-active, var(--bg-hover));
+  }
+
+  &[data-state='open'] > .Icon {
+    transform: rotate(180deg);
+  }
+}
+
+.Icon {
+  transition: transform var(--transition-duration-normal)
+    var(--transition-easing);
+}
+
+.Content {
+  overflow: hidden;
+  font-size: var(--typography-font-size);
+  color: var(--typography-color);
+  background-color: var(--accordion-content-bg, var(--box-bg));
+
+  &[data-state='open'] {
+    animation: slideDown var(--transition-duration-normal)
+      var(--transition-easing);
+  }
+
+  &[data-state='closed'] {
+    animation: slideUp var(--transition-duration-normal)
+      var(--transition-easing);
+  }
+}
+
+.ContentText {
+  padding: var(--accordion-content-padding, var(--box-padding));
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

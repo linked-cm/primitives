@@ -1,0 +1,109 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Overlay {
+  background-color: var(--dialog-overlay-bg, var(--modal-overlay-bg));
+  position: fixed;
+  inset: 0;
+  animation: overlayShow
+    var(--dialog-animation-duration, var(--transition-duration-normal))
+    var(--transition-easing);
+  z-index: var(--z-modal);
+}
+
+.Content {
+  background-color: var(--dialog-bg, var(--modal-bg));
+  border-radius: var(--dialog-radius, var(--modal-radius));
+  box-shadow: var(--dialog-shadow, var(--modal-shadow));
+  position: fixed;
+  top: 50%;
+  left: var(--dialog-position-left, 50%);
+  transform: var(--dialog-transform, translate(-50%, -50%));
+  width: var(--dialog-width, 90vw);
+  max-width: 500px;
+  max-height: 85vh;
+  outline: none;
+  padding: var(--dialog-padding, var(--modal-padding));
+  animation: var(--dialog-animation-name, contentShow)
+    var(--dialog-animation-duration, var(--transition-duration-normal))
+    var(--transition-easing);
+  z-index: calc(var(--z-modal) + 1);
+}
+
+.Close {
+  font-family: inherit;
+  border-radius: var(--modal-radius);
+  height: var(--dialog-close-size, --spacing(6));
+  width: var(--dialog-close-size, --spacing(6));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dialog-close-text, var(--text-primary));
+  position: absolute;
+  top: --spacing(2);
+  right: --spacing(2);
+  transition: var(--transition-normal);
+
+  &:hover {
+    background-color: var(--dialog-close-bg-hover, var(--bg-hover));
+    cursor: pointer;
+  }
+
+  &:focus-visible {
+    @mixin focus;
+  }
+
+  svg {
+    height: --spacing(5);
+    width: --spacing(5);
+  }
+}
+
+.Title {
+  margin: 0;
+  color: var(--heading-5-color);
+  font-size: var(--heading-5-font-size);
+  font-weight: var(--heading-5-font-weight);
+  font-family: var(--heading-5-font-family);
+  letter-spacing: var(--heading-5-letter-spacing);
+}
+
+.Description {
+  margin-bottom: var(--dialog-gap, var(--modal-gap));
+  color: var(--typography-color);
+  font-size: var(--typography-font-size);
+  line-height: var(--typography-line-height);
+  font-family: var(--typography-font-family);
+}
+
+.Header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dialog-gap, var(--modal-gap));
+}
+
+.Footer {
+  display: flex;
+  gap: var(--dialog-gap, var(--modal-gap));
+  justify-content: flex-end;
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

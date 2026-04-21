@@ -1,0 +1,32 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Root {
+  background-color: var(--toggle-bg, var(--control-bg));
+  color: var(--toggle-text, var(--control-text));
+  height: var(--toggle-size, var(--control-toggle-size));
+  min-width: var(--toggle-size, var(--control-toggle-size));
+  padding: var(--toggle-padding-y, --spacing(1))
+    var(--toggle-padding-x, --spacing(2));
+  border-radius: var(--toggle-radius, var(--control-radius));
+  display: flex;
+  font-size: var(--toggle-font-size, var(--typography-font-size));
+  line-height: var(--toggle-line-height, var(--typography-line-height-none));
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--toggle-shadow, var(--control-shadow));
+  transition: var(--transition-fast);
+
+  &:hover {
+    background-color: var(--toggle-bg-hover, var(--bg-active));
+  }
+
+  &[data-state='on'] {
+    background-color: var(--toggle-bg-active, var(--control-accent));
+    color: var(--toggle-text-active, var(--control-text-contrast));
+  }
+
+  &:focus-visible {
+    @mixin focus;
+  }
+}

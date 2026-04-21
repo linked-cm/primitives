@@ -1,0 +1,238 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Root {
+  display: flex;
+  flex-direction: column;
+  width: var(--contextmenu-container-width, 100%);
+}
+
+.Trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--contextmenu-trigger-radius, var(--control-radius));
+  font-size: var(--contextmenu-trigger-font-size, var(--typography-font-size));
+  font-weight: var(
+    --contextmenu-trigger-font-weight,
+    var(--typography-font-weight)
+  );
+  height: var(--contextmenu-trigger-height, var(--control-height-md));
+  padding: var(--contextmenu-trigger-padding, --spacing(2) --spacing(4));
+  transition: var(--transition-fast);
+  border: 1px solid var(--contextmenu-trigger-border, var(--control-border));
+  background-color: var(--contextmenu-trigger-bg, var(--control-bg));
+  color: var(--contextmenu-trigger-text, var(--control-text));
+
+  &:hover {
+    background-color: var(
+      --contextmenu-trigger-bg-hover,
+      var(--control-bg-hover)
+    );
+    border-color: var(
+      --contextmenu-trigger-border-hover,
+      var(--control-border-hover)
+    );
+  }
+
+  &:focus-visible {
+    @mixin focus;
+  }
+
+  &[data-state='open'] {
+    background-color: var(
+      --contextmenu-trigger-bg-active,
+      var(--control-bg-active)
+    );
+    border-color: var(
+      --contextmenu-trigger-border-active,
+      var(--control-border-active)
+    );
+  }
+}
+
+.Content {
+  min-width: var(--contextmenu-content-min-width, 8rem);
+  overflow: hidden;
+  border-radius: var(--contextmenu-content-radius, var(--popover-radius));
+  border: 1px solid var(--contextmenu-content-border, var(--popover-border));
+  background-color: var(--contextmenu-content-bg, var(--popover-bg));
+  padding: var(--contextmenu-content-padding, --spacing(1));
+  box-shadow: var(--contextmenu-content-shadow, var(--popover-shadow));
+  animation-duration: var(--transition-duration-normal);
+  animation-timing-function: var(--transition-easing);
+  will-change: transform, opacity;
+
+  &[data-side='top'] {
+    animation-name: slideDownAndFade;
+  }
+
+  &[data-side='right'] {
+    animation-name: slideLeftAndFade;
+  }
+
+  &[data-side='bottom'] {
+    animation-name: slideUpAndFade;
+  }
+
+  &[data-side='left'] {
+    animation-name: slideRightAndFade;
+  }
+}
+
+.Item,
+.SubTrigger,
+.CheckboxItem,
+.RadioItem {
+  all: unset;
+  font-size: var(--contextmenu-item-font-size, var(--text-sm));
+  line-height: var(
+    --contextmenu-item-line-height,
+    var(--typography-line-height-none)
+  );
+  border-radius: var(--contextmenu-item-radius, var(--popover-radius));
+  display: flex;
+  align-items: center;
+  height: var(--contextmenu-item-height, --spacing(8));
+  padding: var(--contextmenu-item-padding, --spacing(2) --spacing(3));
+  position: relative;
+  padding-left: var(--contextmenu-item-padding-left, --spacing(3));
+  user-select: none;
+  outline: none;
+  color: var(--contextmenu-item-text, var(--popover-text));
+  cursor: pointer;
+  transition: var(--transition-fast);
+
+  &[data-disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &[data-highlighted] {
+    background-color: var(--contextmenu-item-bg-active, var(--bg-active));
+    color: var(--contextmenu-item-text-active, var(--popover-text));
+  }
+}
+
+.SubTrigger {
+  &[data-state='open'] {
+    background-color: var(--contextmenu-subtrigger-bg-open, var(--bg-active));
+    color: var(--contextmenu-subtrigger-text-open, var(--popover-text));
+  }
+}
+
+.CheckboxItem,
+.RadioItem {
+  padding-left: var(--contextmenu-checkbox-padding-left, --spacing(6));
+}
+
+.ItemIndicator {
+  position: absolute;
+  left: 0;
+  width: var(--contextmenu-indicator-width, --spacing(5));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.RightSlot {
+  margin-left: auto;
+  padding-left: var(--contextmenu-right-slot-padding, --spacing(5));
+  font-size: var(--contextmenu-right-slot-font-size, var(--text-xs));
+  color: var(--contextmenu-right-slot-text, var(--text-auxiliary));
+}
+
+.Label {
+  padding-left: var(--contextmenu-label-padding-left, --spacing(3));
+  padding-right: var(--contextmenu-label-padding-right, --spacing(3));
+  font-size: var(--contextmenu-label-font-size, var(--text-xs));
+  font-weight: var(--contextmenu-label-font-weight, var(--heading-font-weight));
+  color: var(--contextmenu-label-text, var(--text-auxiliary));
+  line-height: var(
+    --contextmenu-label-line-height,
+    var(--typography-line-height-none)
+  );
+}
+
+.Separator {
+  height: 1px;
+  background-color: var(--contextmenu-separator-bg, var(--border-default));
+  margin: var(--contextmenu-separator-margin, --spacing(1));
+}
+
+.SubContent {
+  min-width: var(--contextmenu-subcontent-min-width, 8rem);
+  overflow: hidden;
+  border-radius: var(--contextmenu-subcontent-radius, var(--popover-radius));
+  border: 1px solid var(--contextmenu-subcontent-border, var(--popover-border));
+  background-color: var(--contextmenu-subcontent-bg, var(--popover-bg));
+  padding: var(--contextmenu-subcontent-padding, --spacing(1));
+  box-shadow: var(--contextmenu-subcontent-shadow, var(--popover-shadow));
+  animation-duration: var(--transition-duration-normal);
+  animation-timing-function: var(--transition-easing);
+  will-change: transform, opacity;
+
+  &[data-side='top'] {
+    animation-name: slideDownAndFade;
+  }
+
+  &[data-side='right'] {
+    animation-name: slideLeftAndFade;
+  }
+
+  &[data-side='bottom'] {
+    animation-name: slideUpAndFade;
+  }
+
+  &[data-side='left'] {
+    animation-name: slideRightAndFade;
+  }
+}
+
+.Inset {
+  padding-left: var(--contextmenu-inset-padding-left, --spacing(6));
+}
+
+@keyframes slideUpAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

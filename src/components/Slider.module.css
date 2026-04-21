@@ -1,0 +1,43 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+  width: var(--slider-width, var(--track-control-width));
+  height: var(--slider-height, var(--track-control-height));
+}
+
+.Track {
+  background-color: var(--slider-track-bg, var(--track-control-track-bg));
+  position: relative;
+  flex-grow: 1;
+  border-radius: var(--slider-track-radius, var(--track-control-track-radius));
+  height: var(--slider-track-height, var(--track-control-track-height));
+}
+
+.Range {
+  position: absolute;
+  background-color: var(
+    --slider-range-bg,
+    var(--track-control-track-bg-active)
+  );
+  border-radius: var(--slider-track-radius, var(--track-control-track-radius));
+  height: 100%;
+}
+
+.Thumb {
+  display: block;
+  width: var(--slider-thumb-size, var(--track-control-thumb-size));
+  height: var(--slider-thumb-size, var(--track-control-thumb-size));
+  background-color: var(--slider-thumb-bg, var(--track-control-thumb-bg));
+  box-shadow: var(--slider-thumb-shadow, var(--track-control-thumb-shadow));
+  border-radius: var(--slider-thumb-radius, 50%);
+
+  &:focus-visible {
+    @mixin focus;
+  }
+}

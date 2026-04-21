@@ -1,0 +1,153 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Root {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--command-radius, var(--popover-radius));
+  border: 1px solid var(--command-border, var(--popover-border));
+  background-color: var(--command-bg, var(--popover-bg));
+  box-shadow: var(--command-shadow, var(--popover-shadow));
+}
+
+.DialogCommand {
+  &[cmdk-group-heading] {
+    padding-left: --spacing(1);
+    padding-right: --spacing(1);
+    font-weight: var(--typography-font-weight);
+  }
+
+  &[cmdk-group]:not([hidden]) ~ &[cmdk-group] {
+    padding-top: 0;
+  }
+
+  &[cmdk-group] {
+    padding-left: --spacing(1);
+    padding-right: --spacing(1);
+  }
+
+  &[cmdk-input-wrapper] svg {
+    height: --spacing(1);
+    width: --spacing(1);
+  }
+
+  &[cmdk-input] {
+    height: --spacing(3);
+  }
+
+  &[cmdk-item] {
+    padding-left: --spacing(1);
+    padding-right: --spacing(1);
+    padding-top: --spacing(1);
+    padding-bottom: --spacing(1);
+  }
+
+  &[cmdk-item] svg {
+    height: --spacing(1);
+    width: --spacing(1);
+  }
+}
+
+.dialogContent {
+  overflow: hidden;
+  padding: 0;
+  box-shadow: var(--command-shadow, var(--popover-shadow));
+}
+
+.InputContainer {
+  display: flex;
+  align-items: center;
+  border-width: bold;
+  color: var(--field-text);
+}
+
+.Input {
+  font-family: var(--field-font-family);
+  display: flex;
+  color: var(--field-text);
+  height: var(--field-height-md);
+  font-size: var(--field-font-size);
+  font-weight: var(--field-font-weight);
+  background-color: var(--field-bg);
+  transition: var(--transition-normal);
+  border: 0;
+  outline: none;
+
+  &:focus {
+    outline: none;
+    border: 0;
+  }
+}
+
+.Icon {
+  margin: 0 --spacing(2);
+  height: --spacing(4);
+  width: --spacing(4);
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+.list {
+  max-height: var(--command-max-height, 300px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: --spacing(3);
+}
+
+.Empty {
+  padding: --spacing(4) 0;
+  text-align: center;
+  font-family: var(--typography-font-family);
+  font-size: var(--typography-small-size);
+  line-height: var(--typography-line-height-none);
+  color: var(--command-text, var(--popover-text));
+}
+
+.Group {
+  overflow: hidden;
+}
+
+div[cmdk-group-heading] {
+  padding: --spacing(2);
+  font-weight: var(--typography-font-weight);
+}
+
+.separator {
+  margin: --spacing(2) 0;
+  height: auto;
+  background-clip: border-box;
+}
+
+.Item {
+  position: relative;
+  display: flex;
+  cursor: default;
+  user-select: none;
+  align-items: center;
+  border-radius: var(--list-item-radius);
+  outline: none;
+  font-family: var(--list-item-font-family);
+  font-size: var(--list-item-font-size);
+  line-height: var(--list-item-line-height);
+  color: var(--list-item-text);
+  padding: var(--list-item-padding-y) var(--list-item-padding-x);
+
+  &[aria-selected='true'] {
+    background-color: var(--list-item-bg-active);
+  }
+
+  &[data-disabled='true'] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+.shortcut {
+  margin-left: auto;
+  font-size: var(--command-shortcut-font-size, var(--text-sm));
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--command-shortcut-text, var(--text-auxiliary));
+}

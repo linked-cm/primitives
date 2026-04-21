@@ -1,0 +1,25 @@
+@import '@_linked/css/package.css';
+
+.Root {
+  font-family: var(--typography-font-family);
+  font-weight: var(--typography-font-weight);
+  font-size: var(--typography-font-size);
+  line-height: var(--typography-line-height);
+  color: var(--typography-color);
+
+  &.default {
+    font-size: var(--typography-font-size);
+  }
+
+  &.small {
+    font-size: var(--typography-small-size);
+  }
+
+  &.medium {
+    font-size: var(--typography-font-size);
+  }
+
+  &.large {
+    font-size: var(--typography-large-size);
+  }
+}

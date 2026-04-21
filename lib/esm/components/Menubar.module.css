@@ -1,0 +1,128 @@
+@theme static {
+  --spacing: 0.25rem;
+}
+@import './helpers/mixins.css';
+.Root {
+  display: flex;
+  background-color: var(--menubar-bg, var(--popover-bg));
+  padding: var(--menubar-padding, --spacing(1));
+  border-radius: var(--menubar-radius, var(--popover-radius));
+  box-shadow: var(--menubar-shadow, var(--popover-shadow));
+}
+
+.Trigger {
+  padding: var(--menubar-trigger-padding-y, --spacing(2))
+    var(--menubar-trigger-padding-x, --spacing(3));
+  outline: none;
+  user-select: none;
+  font-weight: var(
+    --menubar-trigger-font-weight,
+    var(--typography-font-weight)
+  );
+  line-height: var(
+    --menubar-trigger-line-height,
+    var(--typography-line-height-none)
+  );
+  border-radius: var(--menubar-trigger-radius, var(--popover-radius));
+  color: var(--menubar-text, var(--popover-text));
+  font-size: var(--menubar-trigger-font-size, var(--text-sm));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--menubar-trigger-gap, --spacing(0.5));
+  height: var(
+    --menubar-trigger-height,
+    var(--menubar-item-height, --spacing(8))
+  );
+
+  &[data-highlighted],
+  &[data-state='open'] {
+    background-color: var(--menubar-bg-active, var(--bg-active));
+  }
+}
+
+.Content,
+.SubContent {
+  min-width: var(--menubar-content-min-width, 14rem);
+  background-color: var(--menubar-content-bg, var(--popover-bg));
+  border-radius: var(--menubar-content-radius, var(--popover-radius));
+  padding: var(--menubar-content-padding, var(--menubar-padding, --spacing(1)));
+  box-shadow: var(--menubar-content-shadow, var(--popover-shadow));
+  animation-duration: var(--transition-duration-normal);
+  animation-timing-function: var(--transition-easing);
+  will-change: transform, opacity;
+}
+
+.Item,
+.SubTrigger,
+.CheckboxItem,
+.RadioItem {
+  all: unset;
+  font-family: var(--typography-font-family);
+  font-size: var(--menubar-item-font-size, var(--text-sm));
+  line-height: var(
+    --menubar-item-line-height,
+    var(--typography-line-height-none)
+  );
+  color: var(--menubar-item-text, var(--popover-text));
+  border-radius: var(--menubar-item-radius, var(--popover-radius));
+  display: flex;
+  align-items: center;
+  height: var(--menubar-item-height, --spacing(8));
+  padding: 0 var(--menubar-item-padding-x, --spacing(2.5));
+  position: relative;
+  user-select: none;
+
+  &[data-highlighted] {
+    background-color: var(--menubar-item-bg-active, var(--bg-active));
+    color: var(--menubar-item-text-active, var(--popover-text));
+  }
+
+  &[data-disabled] {
+    @mixin disabled;
+  }
+
+  &.Inset {
+    padding-left: var(--menubar-item-inset-padding, --spacing(6));
+  }
+}
+
+.CheckboxItem,
+.RadioItem {
+  padding-left: var(--menubar-item-inset-padding, --spacing(6));
+}
+
+.Item[data-state='open'],
+.SubTrigger[data-state='open'] {
+  background-color: var(--menubar-item-bg-active, var(--bg-active));
+  color: var(--menubar-item-text-active, var(--popover-text));
+}
+
+.ItemIndicator {
+  position: absolute;
+  left: 0;
+  width: var(--menubar-indicator-width, --spacing(5));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Separator {
+  height: 1px;
+  background-color: var(--menubar-separator, var(--border-default));
+  margin: var(--menubar-separator-spacing, --spacing(1.5));
+}
+
+.RightSlot {
+  margin-left: auto;
+  padding-left: var(--menubar-right-slot-padding, --spacing(5));
+  color: var(--menubar-right-slot-text, var(--popover-text));
+}
+
+.Label {
+  font-weight: var(--heading-font-weight);
+}
+
+.Arrow {
+  fill: currentColor;
+}

@@ -1,0 +1,248 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Root {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  z-index: 1;
+}
+
+.List {
+  display: flex;
+  justify-content: center;
+  background-color: var(--navigation-bg, var(--popover-bg));
+  padding: var(--navigation-padding, --spacing(2));
+  border-radius: var(--navigation-radius, var(--popover-radius));
+  list-style: none;
+  box-shadow: var(--navigation-shadow, var(--popover-shadow));
+  margin: 0;
+}
+
+.Trigger,
+.Link {
+  padding: var(--navigationmenu-item-padding-y, --spacing(3))
+    var(--navigationmenu-item-padding-x, --spacing(4));
+  outline: none;
+  user-select: none;
+  font-weight: var(
+    --navigationmenu-item-font-weight,
+    var(--typography-font-weight)
+  );
+  line-height: var(
+    --navigationmenu-item-line-height,
+    var(--typography-line-height-none)
+  );
+  border-radius: var(--navigation-item-radius, var(--popover-radius));
+  font-size: var(--navigationmenu-item-font-size, var(--typography-font-size));
+  color: var(--navigation-text, var(--popover-text));
+  transition: var(--transition-normal);
+
+  &:focus-visible {
+    @mixin focus;
+  }
+
+  &:hover {
+    background-color: var(--navigation-bg-hover, var(--bg-active));
+  }
+}
+
+.Trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--navigationmenu-trigger-gap, --spacing(1));
+}
+
+.Link {
+  display: block;
+  text-decoration: none;
+}
+
+.Content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation-duration: var(--transition-duration-normal);
+  animation-timing-function: ease;
+
+  &[data-motion='from-start'] {
+    animation-name: enterFromLeft;
+  }
+
+  &[data-motion='from-end'] {
+    animation-name: enterFromRight;
+  }
+
+  &[data-motion='to-start'] {
+    animation-name: exitToLeft;
+  }
+
+  &[data-motion='to-end'] {
+    animation-name: exitToRight;
+  }
+
+  @media only screen and (min-width: 600px) {
+    width: auto;
+  }
+}
+
+.ViewportPosition {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  perspective: 2000px;
+}
+
+.Viewport {
+  position: relative;
+  transform-origin: top center;
+  margin-top: var(--navigationmenu-viewport-margin-top, --spacing(2));
+  width: 100%;
+  background-color: var(--navigation-viewport-bg, var(--popover-bg));
+  border-radius: var(--navigation-viewport-radius, var(--popover-radius));
+  overflow: hidden;
+  box-shadow: var(--navigation-viewport-shadow, var(--popover-shadow));
+  height: var(--radix-navigation-menu-viewport-height);
+  transition: width, height, var(--transition-duration-normal) ease;
+
+  &[data-state='open'] {
+    animation: scaleIn var(--transition-duration-normal) ease;
+  }
+
+  &[data-state='closed'] {
+    animation: scaleOut var(--transition-duration-normal) ease;
+  }
+
+  @media only screen and (min-width: 600px) {
+    width: var(--radix-navigation-menu-viewport-width);
+  }
+}
+
+.Indicator {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: var(--navigationmenu-indicator-height, --spacing(2));
+  top: 100%;
+  overflow: hidden;
+  z-index: 1;
+  transition: width, transform var(--transition-duration-normal) ease;
+
+  &[data-state='visible'] {
+    animation: fadeIn var(--transition-duration-normal) ease;
+  }
+  &[data-state='hidden'] {
+    animation: fadeOut var(--transition-duration-normal) ease;
+  }
+}
+
+.CaretDown {
+  position: relative;
+  color: var(--navigation-text, var(--popover-text));
+  top: 1px;
+  transition: transform var(--transition-duration-normal) ease;
+}
+
+[data-state='open'] > .CaretDown {
+  transform: rotate(180deg);
+}
+
+.Arrow {
+  position: relative;
+  top: 70%;
+  background-color: var(--navigation-arrow-bg, var(--popover-bg));
+  width: var(--navigationmenu-arrow-size, --spacing(2));
+  height: var(--navigationmenu-arrow-size, --spacing(2));
+  transform: rotate(45deg);
+  border-top-left-radius: 2px;
+}
+
+@keyframes enterFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes enterFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes exitToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
+
+@keyframes exitToLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: rotateX(-30deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: rotateX(-10deg) scale(0.95);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

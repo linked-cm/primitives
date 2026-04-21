@@ -1,0 +1,93 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--multiselect-gap, --spacing(1));
+  padding: var(--multiselect-padding, --spacing(2));
+  border-color: var(--multiselect-border, var(--selector-border));
+  border-radius: var(--multiselect-radius, var(--selector-radius));
+
+  .button {
+    display: flex;
+    align-items: center;
+    gap: var(--multiselect-button-gap, --spacing(1));
+    height: var(--multiselect-button-height, 35px);
+    background-color: var(--multiselect-selected-bg, var(--control-accent));
+    color: var(--multiselect-selected-text, var(--control-text-contrast));
+    border-radius: var(--multiselect-selected-radius, var(--selector-radius));
+    padding: var(--multiselect-selected-padding-y, --spacing(1))
+      var(--multiselect-selected-padding-x, --spacing(2));
+    font-size: var(
+      --multiselect-selected-font-size,
+      var(--typography-small-size)
+    );
+    border: 1px solid var(--multiselect-selected-border, var(--control-accent));
+  }
+}
+
+.Command {
+  display: flex;
+  overflow: visible;
+  background-color: transparent;
+  flex-direction: column;
+}
+
+.isActive {
+  caret-color: transparent;
+}
+
+.Content {
+  position: relative;
+}
+
+.input {
+  margin-left: var(--multiselect-input-margin-left, --spacing(2));
+  padding: var(--multiselect-input-padding-y, --spacing(1))
+    var(--multiselect-input-padding-x, --spacing(2));
+  outline: none;
+  flex: 1 1 0%;
+  border: 0 solid transparent;
+  min-height: var(--multiselect-input-min-height, var(--field-height-sm));
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--multiselect-list-gap, --spacing(1));
+  border-radius: var(--multiselect-list-radius, var(--selector-radius));
+}
+
+.Item {
+  border-radius: var(--multiselect-item-radius, var(--selector-radius));
+  transition: var(--transition-fast);
+  display: flex;
+  justify-content: space-between;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.isIncluded {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.isDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.option {
+  font-size: var(--multiselect-option-font-size, var(--typography-small-size));
+  line-height: var(
+    --multiselect-option-line-height,
+    var(--typography-line-height-none)
+  );
+}
+
+.emptyResult {
+  color: var(--text-auxiliary);
+}

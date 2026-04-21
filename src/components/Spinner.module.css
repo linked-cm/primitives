@@ -1,0 +1,21 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.spinner {
+  border: var(--spinner-border-width, 4px) solid
+    var(--spinner-track-color, transparent);
+  border-top-color: var(--spinner-indicator-color, var(--meter-indicator-bg));
+  border-radius: 50%;
+  width: var(--spinner-size, --spacing(4));
+  height: var(--spinner-size, --spacing(4));
+  animation: spin var(--spinner-animation-duration, 1s) linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
