@@ -1,5 +1,11 @@
 # @\_linked/primitives
 
+## 1.0.7
+
+### Patch Changes
+
+- [#5](https://github.com/linked-cm/primitives/pull/5) [`985931d`](https://github.com/linked-cm/primitives/commit/985931d7a7e09e34a945dd9ac25d844981fca469) Thanks [@flyon](https://github.com/flyon)! - loadData: ESM-only JSON import — drop the dead CJS branch, add the `{ with: { type: 'json' } }` import attribute.
+
 ## 1.0.6
 
 ### Patch Changes
