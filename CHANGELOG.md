@@ -1,5 +1,11 @@
 # @\_linked/primitives
 
+## 1.0.9
+
+### Patch Changes
+
+- [#9](https://github.com/linked-cm/primitives/pull/9) [`780eaee`](https://github.com/linked-cm/primitives/commit/780eaee5a4bf1c17f21f3840996ad6cbc0caa63b) Thanks [@carlenmy](https://github.com/carlenmy)! - Allow labelled ToggleGroup items to expand to their content while preserving the existing square minimum for icon-only items. Add `--togglegroup-item-padding-x` so consumers can tune inline padding without overriding primitive geometry.
+
 ## 1.0.7
 
 ### Patch Changes
