@@ -1,5 +1,15 @@
 # @\_linked/primitives
 
+## 1.1.0
+
+### Minor Changes
+
+- [#11](https://github.com/linked-cm/primitives/pull/11) [`85deea9`](https://github.com/linked-cm/primitives/commit/85deea9406d9a5c655427d9302e015c334799691) Thanks [@flyon](https://github.com/flyon)! - Add the `Badge` primitive — badge, tag, chip and pill in one component, with the
+  variant and size vocabulary the rest of the library uses.
+
+  Also forwards `aria-label` and `aria-disabled` to the single thumb in `Slider`, so a
+  one-thumb slider is announced correctly by screen readers.
+
 ## 1.0.9
 
 ### Patch Changes
