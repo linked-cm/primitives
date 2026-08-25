@@ -11,8 +11,11 @@
 .Item {
   background-color: var(--togglegroup-item-bg, var(--control-bg));
   color: var(--togglegroup-item-text, var(--control-text));
-  height: var(--togglegroup-item-size, var(--control-toggle-size));
-  width: var(--togglegroup-item-size, var(--control-toggle-size));
+  box-sizing: border-box;
+  block-size: var(--togglegroup-item-size, var(--control-toggle-size));
+  inline-size: auto;
+  min-inline-size: var(--togglegroup-item-size, var(--control-toggle-size));
+  padding-inline: var(--togglegroup-item-padding-x, --spacing(2));
   display: flex;
   font-size: var(--togglegroup-item-font-size, var(--typography-small-size));
   line-height: var(

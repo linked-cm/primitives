@@ -10,12 +10,13 @@
     "type": "git",
     "url": ""
   },
-  "version": "1.0.8",
+  "version": "1.0.9",
   "linkedPackage": true,
   "main": "lib/cjs/index.js",
   "license": "ISC",
   "scripts": {
     "start": "npm exec linked dev",
+    "test": "node --test test/*.test.mjs",
     "build": "rimraf ./lib && yarn build-esm && yarn build-cjs && yarn copy-to-lib && yarn dual-package",
     "build-esm": "echo \"compiling ESM\" && rimraf ./lib/esm && yarn tsc -p tsconfig-esm.json",
     "build-cjs": "echo \"compiling CJS\" && rimraf ./lib/cjs && yarn tsc -p tsconfig-cjs.json",
