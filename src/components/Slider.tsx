@@ -30,7 +30,10 @@ const Thumb = extend(SliderPrimitive.Thumb, style.Thumb);
 const Root = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
->(({ className, ...props }, ref) => (
+>(({ className, 'aria-label': ariaLabel, 'aria-disabled': ariaDisabled, ...props }, ref) => (
+  // Self-contained single-thumb slider. Forward the accessible name / disabled
+  // state to the actual `role="slider"` element (the Thumb) rather than the Root,
+  // so `getByRole('slider', { name })` and assistive tech can address the control.
   <SliderPrimitive.Root
     ref={ref}
     className={cl(style.Root, className)}
@@ -39,7 +42,7 @@ const Root = React.forwardRef<
     <Track>
       <Range />
     </Track>
-    <Thumb />
+    <Thumb aria-label={ariaLabel} aria-disabled={ariaDisabled} />
   </SliderPrimitive.Root>
 ));
 Root.displayName = SliderPrimitive.Root.displayName;

@@ -6,6 +6,7 @@ import './ontologies/primitives.js';
 // import './shapes/YourShape.js';
 
 //THEN COMPONENTS
+import './components/Badge.js';
 import './components/Button.js';
 import './components/Input.js';
 import './components/Tabs.js';
