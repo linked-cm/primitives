@@ -1,6 +1,6 @@
 {
   "name": "@_linked/primitives",
-  "description": "A UI component library: a headless behaviour source (Radix UI, cmdk, vaul, or hand-written) plus a CSS module reading @_linked/css design tokens \u2014 and no knowledge of data, of shapes, or of any particular application.",
+  "description": "A UI component library: a headless behaviour source (Radix UI, cmdk, vaul, or hand-written) plus a CSS module reading @_linked/css design tokens — and no knowledge of data, of shapes, or of any particular application.",
   "author": {
     "name": "",
     "email": "",
@@ -10,7 +10,7 @@
     "type": "git",
     "url": ""
   },
-  "version": "1.1.0",
+  "version": "1.1.1",
   "linkedPackage": true,
   "main": "lib/cjs/index.js",
   "license": "ISC",
