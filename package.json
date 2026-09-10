@@ -1,6 +1,6 @@
 {
   "name": "@_linked/primitives",
-  "description": "lincd-primitives is a UI library based on Radix UI",
+  "description": "A UI component library: a headless behaviour source (Radix UI, cmdk, vaul, or hand-written) plus a CSS module reading @_linked/css design tokens \u2014 and no knowledge of data, of shapes, or of any particular application.",
   "author": {
     "name": "",
     "email": "",
