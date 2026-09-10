@@ -49,6 +49,18 @@ export const slideInRight = {
 /**
  * Easing and transition configurations
  */
+/**
+ * A cubic-bezier easing: the four control points, as a tuple.
+ *
+ * The tuple type is load-bearing. Written inline, `[0.16, 1, 0.3, 1]` infers as `number[]`,
+ * which is not assignable to an animation library's easing type — it wants exactly four
+ * numbers. Naming it once fixes that and stops the curve being retyped at each use.
+ */
+export type Easing = [number, number, number, number];
+
+/** The shared ease-out curve. Decelerates hard at the end, so motion settles rather than stops. */
+export const EASE_OUT_CURVE: Easing = [0.16, 1, 0.3, 1];
+
 export const spring = {
   type: 'spring',
   stiffness: 300,
@@ -57,12 +69,12 @@ export const spring = {
 
 export const easeOut = {
   duration: 0.2,
-  ease: [0.16, 1, 0.3, 1],
+  ease: EASE_OUT_CURVE,
 };
 
 export const easeSlow = {
   duration: 0.3,
-  ease: [0.16, 1, 0.3, 1],
+  ease: EASE_OUT_CURVE,
 };
 
 /**
@@ -100,7 +112,7 @@ export const tableRowItem = {
     y: 0,
     transition: {
       duration: 0.35,
-      ease: [0.16, 1, 0.3, 1],
+      ease: EASE_OUT_CURVE,
     },
   },
 };
@@ -127,7 +139,7 @@ export const cardGridItem = {
     scale: 1,
     transition: {
       duration: 0.3,
-      ease: [0.16, 1, 0.3, 1],
+      ease: EASE_OUT_CURVE,
     },
   },
 };
@@ -153,7 +165,7 @@ export const listItem = {
     x: 0,
     transition: {
       duration: 0.25,
-      ease: [0.16, 1, 0.3, 1],
+      ease: EASE_OUT_CURVE,
     },
   },
 };
