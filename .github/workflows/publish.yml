@@ -14,6 +14,12 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      # `npm stage publish --provenance` signs the tarball with a GitHub OIDC token, so the
+      # job needs to be able to mint one. This does NOT switch the package to OIDC trusted
+      # publishing — authentication is still the org npm token. It only lets npm attest where
+      # the tarball was built, which is worth having on a package a human is about to approve
+      # sight-unseen.
+      id-token: write
     steps:
       # Author the changesets "Version Packages" PR as the org release App (not the default
       # GITHUB_TOKEN) so its CI runs without a manual "Approve and run" gate. Requires the org
