@@ -71,11 +71,12 @@
     "@_linked/cli": "^1.2",
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.29.8",
+    "copyfiles": "^2.4.1",
+    "framer-motion": "^11.0.0",
+    "rimraf": "^5.0.7",
     "tsconfig-to-dual-package": "^1.2.0",
     "typescript": "^5.7.3",
-    "typescript-plugin-css-modules": "^5.1.0",
-    "rimraf": "^5.0.7",
-    "copyfiles": "^2.4.1"
+    "typescript-plugin-css-modules": "^5.1.0"
   },
   "module": "lib/esm/index.js",
   "exports": {
@@ -104,5 +105,13 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "framer-motion": ">=11"
+  },
+  "peerDependenciesMeta": {
+    "framer-motion": {
+      "optional": true
+    }
   }
 }
