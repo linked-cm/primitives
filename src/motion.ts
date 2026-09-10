@@ -5,13 +5,16 @@
  * the shape an animation library consumes. Same purpose as a colour token: one definition of
  * "how a list staggers in", so two surfaces cannot disagree about it.
  *
- * Typed against `framer-motion` but importing **nothing** from it at runtime — every export
- * below is a plain object. That is deliberate: this library animates with CSS, and taking a
- * runtime animation dependency for a set of constants would push it onto every consumer of
- * every component here. `framer-motion` is an optional peer; a consumer that does not
- * animate never installs it.
+ * This module imports **nothing**, not even types. Every export is a plain object whose type
+ * is inferred, and an inferred object literal is structurally assignable to `framer-motion`'s
+ * `Variants` and `Transition` at the point of use — so a consumer gets full checking without
+ * this package depending on the animation library at all.
+ *
+ * That matters more than it looks. Naming the types here would mean a devDependency to build
+ * and a peer to consume, which is how the workspace ended up with two copies of
+ * `framer-motion` and presets from one that were not assignable to the other. A library that
+ * animates with CSS should not carry an animation library so it can describe some constants.
  */
-import type {Transition, Variants} from 'framer-motion';
 import {useReducedMotion} from './hooks/useReducedMotion.js';
 
 /**
@@ -19,25 +22,25 @@ import {useReducedMotion} from './hooks/useReducedMotion.js';
  */
 
 // Fade animations
-export const fadeInUp: Variants = {
+export const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: -20 },
 };
 
-export const fadeIn: Variants = {
+export const fadeIn = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   exit: { opacity: 0 },
 };
 
-export const scaleIn: Variants = {
+export const scaleIn = {
   initial: { opacity: 0, scale: 0.95 },
   animate: { opacity: 1, scale: 1 },
   exit: { opacity: 0, scale: 0.95 },
 };
 
-export const slideInRight: Variants = {
+export const slideInRight = {
   initial: { x: -20, opacity: 0 },
   animate: { x: 0, opacity: 1 },
   exit: { x: -20, opacity: 0 },
@@ -46,18 +49,18 @@ export const slideInRight: Variants = {
 /**
  * Easing and transition configurations
  */
-export const spring: Transition = {
+export const spring = {
   type: 'spring',
   stiffness: 300,
   damping: 30,
 };
 
-export const easeOut: Transition = {
+export const easeOut = {
   duration: 0.2,
   ease: [0.16, 1, 0.3, 1],
 };
 
-export const easeSlow: Transition = {
+export const easeSlow = {
   duration: 0.3,
   ease: [0.16, 1, 0.3, 1],
 };
@@ -65,7 +68,7 @@ export const easeSlow: Transition = {
 /**
  * Stagger animation configurations
  */
-export const staggerContainer: Variants = {
+export const staggerContainer = {
   animate: {
     transition: {
       staggerChildren: 0.05,
@@ -73,7 +76,7 @@ export const staggerContainer: Variants = {
   },
 };
 
-export const staggerItem: Variants = {
+export const staggerItem = {
   initial: { opacity: 0, y: 10 },
   animate: { opacity: 1, y: 0 },
 };
@@ -81,7 +84,7 @@ export const staggerItem: Variants = {
 /**
  * Slower stagger for table rows - more subtle and elegant
  */
-export const tableStaggerContainer: Variants = {
+export const tableStaggerContainer = {
   animate: {
     transition: {
       staggerChildren: 0.08,
@@ -90,7 +93,7 @@ export const tableStaggerContainer: Variants = {
   },
 };
 
-export const tableRowItem: Variants = {
+export const tableRowItem = {
   initial: { opacity: 0, y: 8 },
   animate: {
     opacity: 1,
@@ -105,7 +108,7 @@ export const tableRowItem: Variants = {
 /**
  * Stagger for card grids - elegant cascade effect
  */
-export const cardGridContainer: Variants = {
+export const cardGridContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -116,7 +119,7 @@ export const cardGridContainer: Variants = {
   },
 };
 
-export const cardGridItem: Variants = {
+export const cardGridItem = {
   hidden: { opacity: 0, y: 12, scale: 0.98 },
   visible: {
     opacity: 1,
@@ -132,7 +135,7 @@ export const cardGridItem: Variants = {
 /**
  * Stagger for list items - subtle slide-in effect
  */
-export const listContainer: Variants = {
+export const listContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -143,7 +146,7 @@ export const listContainer: Variants = {
   },
 };
 
-export const listItem: Variants = {
+export const listItem = {
   hidden: { opacity: 0, x: -8 },
   visible: {
     opacity: 1,
@@ -164,6 +167,6 @@ export {useReducedMotion};
 /**
  * Get appropriate transition based on reduced motion preference
  */
-export const getTransition = (reducedMotion: boolean): Transition => {
+export const getTransition = (reducedMotion: boolean) => {
   return reducedMotion ? { duration: 0 } : easeOut;
 };

@@ -43,6 +43,7 @@ import './components/Spinner.js';
 import './components/ConfirmDialog.js';
 import './components/SkeletonLoader.js';
 import './components/ImageThumb.js';
+import './components/TruncatedText.js';
 import './components/Breadcrumb.js';
 import './components/Drawer.js';
 import './components/IconButton.js';
@@ -53,3 +54,7 @@ import './components/Toolbar.js';
 import './components/VisuallyHidden.js';
 
 import './hooks/use-toast.js';
+
+// The motion presets. Reachable from the entry point so tsc emits them: this package's
+// tsconfig compiles what `index.ts` reaches, not the whole src tree.
+export * from './motion.js';
