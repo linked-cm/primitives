@@ -1,6 +1,6 @@
 {
   "name": "@_linked/primitives",
-  "description": "A UI component library: a headless behaviour source (Radix UI, cmdk, vaul, or hand-written) plus a CSS module reading @_linked/css design tokens — and no knowledge of data, of shapes, or of any particular application.",
+  "description": "A UI component library: a headless behaviour source (Radix UI, cmdk, vaul, or hand-written) plus a CSS module reading @_linked/css design tokens \u2014 and no knowledge of data, of shapes, or of any particular application.",
   "author": {
     "name": "",
     "email": "",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/linked-cm/primitives.git"
   },
   "version": "1.2.0",
   "linkedPackage": true,
