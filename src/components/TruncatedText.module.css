@@ -1,0 +1,162 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+/* ============================================================================
+   TruncatedText.module.css
+
+   Truncated text component with hover popover for full content.
+   Uses semantic tokens from theme.css.
+   ============================================================================ */
+
+/* === Truncated Text Trigger === */
+.truncatedText {
+  cursor: help;
+  border-bottom: 1px dotted var(--truncated-text-gray-400, var(--color-gray-400));
+}
+
+/* === Hover Card Content === */
+.hoverContent {
+  background-color: var(--surface-bg);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-field);
+  box-shadow: var(--surface-shadow);
+  padding: var(--space-sm);
+  max-width: 400px;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+/* === Content Wrapper === */
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+/* === Scroll Area === */
+.scrollArea {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+/* === Full Text === */
+.fullText {
+  font-size: var(--typography-small-size);
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* === Copy Button Wrapper === */
+.copyButtonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--surface-border);
+  padding-top: var(--space-xs);
+  margin-top: var(--space-xs);
+}
+
+/* === Copy Button === */
+.copyButton {
+  color: var(--truncated-text-tertiary-500, var(--color-tertiary-500)) !important;
+  padding: var(--space-xs) !important;
+}
+
+.copyButton:hover {
+  color: var(--truncated-text-tertiary-600, var(--color-tertiary-600)) !important;
+  background-color: color-mix(
+    in srgb,
+    var(--truncated-text-tertiary-500, var(--color-tertiary-500)) 12%,
+    transparent
+  ) !important;
+}
+
+/* === Arrow === */
+.arrow {
+  fill: var(--surface-bg);
+}
+
+/* ============================================================================
+   Mobile Dialog Styles
+   ============================================================================ */
+
+.dialogContent {
+  max-width: 90vw;
+  width: 400px;
+  background-color: var(--surface-bg);
+  border: 1px solid var(--surface-border);
+}
+
+.dialogBody {
+  padding: var(--space-sm) 0;
+  color: var(--text-primary);
+}
+
+.dialogFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--surface-border);
+}
+
+/* ============================================================================
+   Dark Mode
+   ============================================================================ */
+
+[data-theme='dark'] .truncatedText {
+  border-bottom-color: var(--truncated-text-gray-500, var(--color-gray-500));
+}
+
+[data-theme='dark'] .hoverContent {
+  background-color: var(--surface-bg);
+  border-color: var(--surface-border);
+}
+
+/* .fullText uses --text-primary which auto-adjusts for dark mode */
+
+[data-theme='dark'] .copyButtonWrapper {
+  border-top-color: var(--surface-border);
+}
+
+[data-theme='dark'] .copyButton {
+  color: var(--truncated-text-tertiary-400, var(--color-tertiary-400)) !important;
+}
+
+[data-theme='dark'] .copyButton:hover {
+  color: var(--truncated-text-tertiary-300, var(--color-tertiary-300)) !important;
+  background-color: color-mix(
+    in srgb,
+    var(--truncated-text-tertiary-500, var(--color-tertiary-500)) 15%,
+    transparent
+  ) !important;
+}
+
+[data-theme='dark'] .arrow {
+  fill: var(--surface-bg);
+}
+
+[data-theme='dark'] .dialogContent {
+  background-color: var(--surface-bg);
+  border-color: var(--surface-border);
+}
+
+/* .dialogBody uses --text-primary which auto-adjusts for dark mode */
+
+[data-theme='dark'] .dialogFooter {
+  border-top-color: var(--surface-border);
+}
+
+/* Dialog close button in dark mode */
+[data-theme='dark'] .dialogContent button[aria-label="Close"],
+[data-theme='dark'] .dialogContent [class*="Close"] {
+  color: var(--truncated-text-gray-400, var(--color-gray-400));
+}
+
+[data-theme='dark'] .dialogContent button[aria-label="Close"]:hover,
+[data-theme='dark'] .dialogContent [class*="Close"]:hover {
+  color: var(--truncated-text-gray-200, var(--color-gray-200));
+  background-color: var(--truncated-text-gray-700, var(--color-gray-700));
+}

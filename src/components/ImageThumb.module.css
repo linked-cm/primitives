@@ -1,0 +1,134 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+/* ============================================================================
+   ImageThumb.module.css
+
+   Thumbnail image with enlarged hover preview.
+   Uses semantic tokens from theme.css.
+   ============================================================================ */
+
+.root {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* === Thumbnail === */
+.thumb {
+  object-fit: cover;
+  border-radius: var(--radius-field);
+  border: 1px solid var(--surface-border);
+  cursor: pointer;
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+  background-color: var(--section-bg);
+}
+
+.thumb:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
+
+/* === Hover Preview Overlay === */
+.previewOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.previewBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: auto;
+}
+
+.previewBackdrop.visible {
+  opacity: 1;
+}
+
+.previewImage {
+  position: relative;
+  max-width: 80vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: var(--radius-box);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: auto;
+}
+
+.previewImage.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* === Hover tooltip preview (positioned near thumbnail) === */
+.hoverPreview {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  border-radius: var(--radius-box);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background-color: var(--section-bg);
+}
+
+.hoverPreview.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hoverPreviewImage {
+  display: block;
+  object-fit: cover;
+  border-radius: var(--radius-box);
+}
+
+/* === Dark mode adjustments === */
+[data-theme='dark'] .thumb {
+  border-color: var(--surface-border);
+}
+
+[data-theme='dark'] .previewBackdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme='dark'] .hoverPreview {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* === Inline variant (used inside chips/badges) === */
+.inlineThumb {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: var(--radius-selector, 3px);
+  border: 1px solid var(--surface-border);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  .thumb:hover {
+    transform: none;
+  }
+  .hoverPreview,
+  .previewImage,
+  .previewBackdrop {
+    transition: none;
+  }
+}

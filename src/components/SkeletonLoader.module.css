@@ -1,0 +1,83 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+/* ============================================================================
+   SkeletonLoader.module.css
+   
+   Loading placeholder with shimmer animation.
+   Uses semantic tokens from theme.css.
+   ============================================================================ */
+
+/* === Base Skeleton === */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-bg, var(--color-gray-100)) 25%,
+    var(--skeleton-highlight, var(--color-gray-200)) 50%,
+    var(--skeleton-bg, var(--color-gray-100)) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  display: inline-block;
+  border-radius: var(--radius-selector, 4px);
+}
+
+/* === Animation Variant === */
+.animated {
+  animation: shimmer 1.5s infinite;
+}
+
+/* === Spacing === */
+.marginBottom {
+  margin-bottom: 0.5rem;
+}
+
+/* === Table Row Skeleton === */
+.tableRow {
+  border-bottom: 1px solid var(--skeleton-row-border, var(--table-row-border));
+}
+
+/* === Table Cell Skeleton === */
+.tableCell {
+  padding: var(--skeleton-row-padding-y, var(--surface-gap)) var(--skeleton-row-padding-x, var(--space-sm));
+  vertical-align: middle;
+}
+
+/* === Action Buttons Container === */
+.actionButtons {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ============================================================================
+   Dark Mode
+   ============================================================================ */
+
+[data-theme='dark'] .skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-bg, var(--color-gray-800)) 25%,
+    var(--skeleton-highlight, var(--color-gray-700)) 50%,
+    var(--skeleton-bg, var(--color-gray-800)) 75%
+  );
+  background-size: 200% 100%;
+}
+
+[data-theme='dark'] .tableRow {
+  border-bottom-color: var(--skeleton-row-border, var(--table-row-border));
+}
+
+/* ============================================================================
+   Shimmer Animation
+   ============================================================================ */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

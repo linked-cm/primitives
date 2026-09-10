@@ -2,20 +2,67 @@
 @import '@_linked/css/package.css';
 
 .spinner {
-  border: var(--spinner-border-width, 4px) solid
-    var(--spinner-track-color, transparent);
-  border-top-color: var(--spinner-indicator-color, var(--meter-indicator-bg));
-  border-radius: 50%;
-  width: var(--spinner-size, --spacing(4));
-  height: var(--spinner-size, --spacing(4));
-  animation: spin var(--spinner-animation-duration, 1s) linear infinite;
+  display: inline-flex;
+  /* Never grow or shrink in a flex parent — that would distort the ring. */
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: var(--spinner-indicator-color, var(--meter-indicator-bg, currentColor));
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
+/* Sized explicitly rather than filling the container, so the ring stays a circle even when
+   a flex parent stretches the box around it. */
+.ring {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  width: var(--spinner-size, --spacing(4));
+  height: var(--spinner-size, --spacing(4));
+  border-radius: 50%;
+  border: var(--spinner-border-width, 2px) solid currentColor;
+  border-top-color: var(--spinner-track-color, transparent);
+  opacity: 0.85;
+  animation: spinnerRotate var(--spinner-animation-duration, 0.7s) linear infinite;
+}
+
+@keyframes spinnerRotate {
+  to {
     transform: rotate(360deg);
+  }
+}
+
+/* Size variants. Each sets `--spinner-size`, so a consumer that sets the variable directly
+   still wins — the variants are a shorthand for it, not a replacement. */
+.small {
+  --spinner-size: --spacing(4);
+}
+.medium {
+  --spinner-size: --spacing(6);
+}
+.large {
+  --spinner-size: --spacing(8);
+  --spinner-border-width: 3px;
+}
+.xlarge {
+  --spinner-size: --spacing(12);
+  --spinner-border-width: 3px;
+}
+
+.small,
+.medium,
+.large,
+.xlarge {
+  width: var(--spinner-size);
+  height: var(--spinner-size);
+}
+
+/* Reduced motion: freeze the ring, keep it visible. Removing it entirely would remove the
+   only signal that something is loading. */
+.reducedMotion {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring {
+    animation: none;
   }
 }
