@@ -1,5 +1,11 @@
 # @\_linked/primitives
 
+## 1.5.1
+
+### Patch Changes
+
+- [#50](https://github.com/linked-fw/primitives/pull/50) [`0b057e3`](https://github.com/linked-fw/primitives/commit/0b057e331f68d25858104ff52993e8130e89a1be) Thanks [@flyon](https://github.com/flyon)! - Sourcemaps now embed their TypeScript source, so consumers no longer see 'points to missing source files' warnings.
+
 ## 1.5.0
 
 ### Minor Changes
