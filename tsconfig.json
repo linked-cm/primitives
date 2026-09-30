@@ -5,7 +5,7 @@
     "declaration": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "downlevelIteration": true,
+    "rootDir": "./src",
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
