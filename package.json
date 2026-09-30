@@ -11,19 +11,18 @@
     "url": "git+https://github.com/linked-fw/primitives.git"
   },
   "version": "1.5.2",
+  "type": "module",
   "packageManager": "npm@12.1.0",
   "linkedPackage": true,
-  "main": "lib/cjs/index.js",
+  "main": "lib/esm/index.js",
   "types": "index.d.ts",
   "license": "ISC",
   "scripts": {
     "start": "npm exec linked dev",
     "test": "node --test test/*.test.mjs",
-    "build": "rimraf ./lib && npm run build-esm && npm run build-cjs && npm run copy-to-lib && npm run dual-package",
+    "build": "rimraf ./lib && npm run build-esm && npm run copy-to-lib",
     "build-esm": "echo \"compiling ESM\" && rimraf ./lib/esm && tsc -p tsconfig-esm.json",
-    "build-cjs": "echo \"compiling CJS\" && rimraf ./lib/cjs && tsc -p tsconfig-cjs.json",
-    "copy-to-lib": "echo 'copying CSS + JSON assets to lib folder' && copyfiles -u 1 'src/**/*.css' 'src/**/*.json' lib/esm && copyfiles -u 1 'src/**/*.css' 'src/**/*.json' lib/cjs",
-    "dual-package": "echo 'adding package.json to each lib folder for dual output support' && tsconfig-to-dual-package ./tsconfig-cjs.json ./tsconfig-esm.json"
+    "copy-to-lib": "echo 'copying CSS + JSON assets to lib folder' && copyfiles -u 1 'src/**/*.css' 'src/**/*.json' lib/esm"
   },
   "keywords": [
     "lincd",
@@ -75,7 +74,6 @@
     "@changesets/cli": "^3.0.0",
     "copyfiles": "^2.4.1",
     "rimraf": "^6.0.0",
-    "tsconfig-to-dual-package": "^1.2.0",
     "typescript": "^5.7.3",
     "typescript-plugin-css-modules": "^5.1.0"
   },
@@ -83,18 +81,15 @@
   "exports": {
     ".": {
       "types": "./lib/esm/index.d.ts",
-      "import": "./lib/esm/index.js",
-      "require": "./lib/cjs/index.js"
+      "import": "./lib/esm/index.js"
     },
     "./*.js": {
       "types": "./lib/esm/*.d.ts",
-      "import": "./lib/esm/*.js",
-      "require": "./lib/cjs/*.js"
+      "import": "./lib/esm/*.js"
     },
     "./*": {
       "types": "./lib/esm/*.d.ts",
-      "import": "./lib/esm/*.js",
-      "require": "./lib/cjs/*.js"
+      "import": "./lib/esm/*.js"
     }
   },
   "typesVersions": {
