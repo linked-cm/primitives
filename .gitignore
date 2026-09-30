@@ -6,6 +6,8 @@ yarn.lock
 .DS_Store
 
 # Compiled artifacts from tsc should live in lib/, never under src/.
-# (.js alone is NOT ignored — some packages have legit .js test helpers/config.)
+# This repo has no hand-written .js under src/, so the whole family is ignored.
+# A repo that does keep a legit .js helper there must un-ignore it explicitly.
 src/**/*.d.ts
+src/**/*.js
 src/**/*.js.map
