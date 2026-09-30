@@ -1,5 +1,11 @@
 # @\_linked/primitives
 
+## 1.5.3
+
+### Patch Changes
+
+- [#58](https://github.com/linked-fw/primitives/pull/58) [`bf44441`](https://github.com/linked-fw/primitives/commit/bf4444127a20089afe41d8a7637ec27989e75ee3) Thanks [@flyon](https://github.com/flyon)! - The package is now ESM-only, like the rest of the Linked packages. The `require` condition pointed at a `lib/cjs` build that could not load — from the published tarball, `require('@_linked/primitives')` already failed — so it is removed together with the CJS build, and `"type": "module"` is set. `import` is unchanged.
+
 ## 1.5.2
 
 ### Patch Changes
