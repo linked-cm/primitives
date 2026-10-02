@@ -1,5 +1,13 @@
 # @\_linked/primitives
 
+## 1.6.0
+
+### Minor Changes
+
+- [#63](https://github.com/linked-fw/primitives/pull/63) [`a65b682`](https://github.com/linked-fw/primitives/commit/a65b68209ba4e1c73a86a50afe6d7f57b1dedce1) Thanks [@flyon](https://github.com/flyon)! - The primitives ontology moves from `http://lincd.org/ont/radix/` to `https://linked.cm/ont/primitives/`, the first-party scheme every public package uses (`https://linked.cm/ont/{publicSlug}/`). `radix` was a leftover of the package's old name; the ontology and its prefix are now `primitives`, matching the package (and its data file, which already said `primitives`).
+  
+  No data migration is needed: the ontology defines no terms, so nothing was ever stored under it. The grouping export is now `primitives`; `radix` stays as a deprecated alias. The prefix registered with `Prefix` is now `primitives` instead of `radix`.
+
 ## 1.5.4
 
 ### Patch Changes
