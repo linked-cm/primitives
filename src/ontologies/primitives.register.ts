@@ -14,4 +14,4 @@ import * as terms from './primitives.js';
 import {loadData, ns} from './primitives.js';
 import {linkedOntology} from '../package.js';
 
-linkedOntology(terms, ns, 'radix', loadData, '../data/primitives.json');
+linkedOntology(terms, ns, 'primitives', loadData, '../data/primitives.json');
