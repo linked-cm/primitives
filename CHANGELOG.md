@@ -1,5 +1,14 @@
 # @\_linked/primitives
 
+## 1.5.4
+
+### Patch Changes
+
+- [#61](https://github.com/linked-fw/primitives/pull/61) [`1a631d5`](https://github.com/linked-fw/primitives/commit/1a631d5fe1c3de83fac65b00e3c050ca97ff4a0b) Thanks [@flyon](https://github.com/flyon)! - Declare `react` and `react-dom` as peer dependencies (`^18.2.0 || ^19.0.0`). The components
+  import both but never said so, so a consumer's React was found by hoisting alone. The package
+  is now built and type-checked against React 19 and `@types/react` 19, and requires
+  `@_linked/react` ^1.6.0, the first line whose peer range admits React 19.
+
 ## 1.5.3
 
 ### Patch Changes
