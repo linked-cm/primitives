@@ -1,5 +1,67 @@
 # @\_linked/primitives
 
+## 1.7.0
+
+### Minor Changes
+
+- [#68](https://github.com/linked-fw/primitives/pull/68) [`917ac17`](https://github.com/linked-fw/primitives/commit/917ac175c6496fd34212b279c7477ec283930144) Thanks [@abdipramana](https://github.com/abdipramana)! - Add `Combobox`, a searchable single-select built from Popover and Command. `Select` remains the list that does not filter.
+  
+  Item values are ids. Pass the visible label separately as `displayValue` on the root and as `keywords` on the item, or the closed trigger and the search will not match the name.
+  
+  ```tsx
+  import { Combobox } from '@_linked/primitives/components/Combobox';
+  
+  <Combobox.Root
+    value={selectedId}
+    displayValue={selectedLabel}
+    onValueChange={setSelectedId}
+  >
+    <Combobox.Trigger placeholder="Select an action" />
+    <Combobox.Content>
+      <Combobox.Input placeholder="Search" />
+      <Combobox.List>
+        <Combobox.Empty>No matches</Combobox.Empty>
+        <Combobox.Item value={action.id} keywords={[action.name]}>
+          {action.name}
+        </Combobox.Item>
+      </Combobox.List>
+    </Combobox.Content>
+  </Combobox.Root>
+  ```
+  
+  `onValueChange` receives the `value` prop of the chosen item, not a lowercased search string.
+
+- [#68](https://github.com/linked-fw/primitives/pull/68) [`917ac17`](https://github.com/linked-fw/primitives/commit/917ac175c6496fd34212b279c7477ec283930144) Thanks [@abdipramana](https://github.com/abdipramana)! - Add `InputOTP` for a fixed-length one-time code. It does not know which product or channel the code belongs to.
+  
+  ```tsx
+  import {
+    InputOTP,
+    InputOTPGroup,
+    InputOTPSlot,
+    REGEXP_ONLY_DIGITS,
+  } from '@_linked/primitives/components/InputOTP';
+  
+  <InputOTP
+    maxLength={6}
+    pattern={REGEXP_ONLY_DIGITS}
+    value={code}
+    onChange={setCode}
+    onComplete={submitCode}
+    invalid={hasError}
+  >
+    <InputOTPGroup>
+      <InputOTPSlot index={0} />
+      <InputOTPSlot index={1} />
+      <InputOTPSlot index={2} />
+      <InputOTPSlot index={3} />
+      <InputOTPSlot index={4} />
+      <InputOTPSlot index={5} />
+    </InputOTPGroup>
+  </InputOTP>
+  ```
+  
+  `invalid` marks the whole code without choosing an error message. `REGEXP_ONLY_DIGITS` is re-exported from `input-otp` for callers that want digits only.
+
 ## 1.6.0
 
 ### Minor Changes
