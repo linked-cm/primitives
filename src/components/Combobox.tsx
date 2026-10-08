@@ -145,6 +145,7 @@ const Content = React.forwardRef<
       className={cl(style.Content, className)}
       {...props}
     >
+      {/* One Command root keeps the search input, list, and items in the same cmdk tree. */}
       <CommandRoot className={style.Command}>{children}</CommandRoot>
     </PopoverPrimitive.Content>
   </PopoverPrimitive.Portal>
@@ -169,6 +170,8 @@ const Item = React.forwardRef<
       data-checked={value === itemValue ? '' : undefined}
       className={cl(style.Item, className)}
       onSelect={() => {
+        // cmdk lowercases the value it passes into this callback. Use the
+        // original prop so an id is returned unchanged.
         onValueChange?.(itemValue);
         onSelect?.(itemValue);
         setOpen(false);

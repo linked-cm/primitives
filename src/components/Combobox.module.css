@@ -63,6 +63,7 @@
 
 .Content {
   z-index: var(--layer-popover);
+  /* Radix sets this on the popper so the panel matches the trigger. */
   width: var(--radix-popover-trigger-width);
   padding: 0;
   overflow: hidden;
