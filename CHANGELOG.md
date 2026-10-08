@@ -1,5 +1,11 @@
 # @\_linked/primitives
 
+## 1.7.1
+
+### Patch Changes
+
+- [#70](https://github.com/linked-fw/primitives/pull/70) [`8706d95`](https://github.com/linked-fw/primitives/commit/8706d95089cecc6611eb47ebd13ad5dab3bc15e6) Thanks [@flyon](https://github.com/flyon)! - Publish only the files consumers need; the tarball no longer includes `.changeset/`, `.gitattributes`, `.github/`, `renovate.json`, `test/` or tsconfig files.
+
 ## 1.7.0
 
 ### Minor Changes
