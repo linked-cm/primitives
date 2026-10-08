@@ -9,6 +9,7 @@ import './ontologies/primitives.register.js';
 import './components/Badge.js';
 import './components/Button.js';
 import './components/Input.js';
+import './components/InputOTP.js';
 import './components/Tabs.js';
 import './components/Switch.js';
 import './components/Checkbox.js';

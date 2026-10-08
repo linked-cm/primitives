@@ -1,0 +1,87 @@
+@import './helpers/mixins.css';
+
+.Root {
+  display: flex;
+  align-items: center;
+  gap: var(--otp-gap, 0.5rem);
+
+  &:has(:disabled) {
+    @mixin disabled;
+  }
+
+  &.invalid .Slot {
+    border-color: var(
+      --otp-border-invalid,
+      var(--input-border-invalid, var(--field-border-error))
+    );
+  }
+}
+
+.Input:disabled {
+  cursor: not-allowed;
+}
+
+.Group {
+  display: flex;
+  align-items: center;
+}
+
+.Slot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--otp-slot-size, var(--input-height-md, var(--field-height-md)));
+  height: var(--otp-slot-size, var(--input-height-md, var(--field-height-md)));
+  margin-left: var(--otp-slot-gap, 0.5rem);
+  font-family: var(--input-font-family, var(--field-font-family));
+  font-size: var(--input-font-size, var(--field-font-size));
+  color: var(--input-text, var(--field-text));
+  background-color: var(--input-bg, var(--field-bg));
+  border: 1px solid var(--input-border, var(--field-border));
+  border-radius: var(--input-radius, var(--field-radius));
+  box-shadow: var(--input-shadow, var(--field-shadow));
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &.active {
+    @mixin focus;
+    background-color: var(--input-bg-focus, var(--field-bg-focus));
+    border-color: var(--input-border-focus, var(--field-border-focus));
+  }
+}
+
+.Caret {
+  pointer-events: none;
+  position: absolute;
+  width: 1px;
+  height: 1rem;
+  background: currentColor;
+  animation: otp-caret 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Caret {
+    animation: none;
+  }
+}
+
+@keyframes otp-caret {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.Separator {
+  display: flex;
+  align-items: center;
+  color: var(--input-text, var(--field-text));
+}
