@@ -7,7 +7,9 @@ A UI component library: a headless behaviour source, a CSS module, and nothing e
 Every component in this package is three things and no more:
 
 1. **A headless behaviour source** — [Radix UI](https://www.radix-ui.com) for most of them,
-   [cmdk](https://cmdk.paco.me) for `Command` and `MultiSelect`, [vaul](https://vaul.emilkowal.ski)
+   [cmdk](https://cmdk.paco.me) for `Command`, `MultiSelect`, and `Combobox`,
+   [input-otp](https://github.com/guilhermerodz/input-otp) for `InputOTP`,
+   [vaul](https://vaul.emilkowal.ski)
    for `Drawer`, or hand-written where none of those has an answer (`Input`, `Textarea`,
    `Heading`, `Text`, `Spinner`).
 2. **A CSS module** that reads design tokens from
