@@ -1,0 +1,86 @@
+@import './helpers/mixins.css';
+@import '@_linked/css/package.css';
+
+.Root {
+  flex: 1;
+  min-width: 0;
+}
+
+.Trigger {
+  color: var(--select-trigger-text, var(--selector-trigger-text));
+  background-color: var(--select-trigger-bg, var(--selector-trigger-bg));
+  border: 1px solid var(--select-trigger-border, var(--selector-trigger-border));
+  border-radius: var(--select-trigger-radius, var(--selector-radius));
+  box-shadow: var(--select-trigger-shadow, var(--field-shadow));
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--select-trigger-gap, var(--selector-trigger-gap, --spacing(2)));
+  width: 100%;
+  padding: var(
+      --select-trigger-padding-y,
+      var(--selector-trigger-padding-y, --spacing(2))
+    )
+    var(--select-trigger-padding-x, var(--selector-trigger-padding-x));
+  font-family: var(--select-trigger-font-family, var(--field-font-family));
+  font-size: var(--select-trigger-font-size, var(--field-font-size));
+  font-weight: var(--select-trigger-font-weight, var(--field-font-weight));
+  line-height: var(--select-trigger-line-height, var(--field-line-height));
+  min-height: var(--select-trigger-height, var(--selector-trigger-height-md));
+  text-align: start;
+  cursor: pointer;
+  transition: var(--transition-normal);
+
+  &:hover {
+    background-color: var(--select-trigger-bg-hover, var(--field-bg-hover));
+    border-color: var(--select-trigger-border-hover, var(--field-border-hover));
+  }
+
+  &:focus-visible {
+    @mixin focus;
+    background-color: var(--select-trigger-bg-focus, var(--field-bg-focus));
+  }
+
+  &:disabled {
+    @mixin disabled;
+  }
+}
+
+.placeholder {
+  color: var(--select-trigger-placeholder, var(--field-text-placeholder));
+}
+
+.Value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Icon {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.Content {
+  z-index: var(--layer-popover);
+  width: var(--radix-popover-trigger-width);
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--select-panel-bg, var(--selector-panel-bg));
+  border: 1px solid var(--select-panel-border, var(--selector-panel-border));
+  border-radius: var(--select-panel-radius, var(--selector-radius));
+  box-shadow: var(--select-panel-shadow, var(--selector-panel-shadow));
+}
+
+.Command {
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.Item[data-checked] {
+  background-color: var(--select-option-bg-active, var(--control-accent));
+  color: var(--select-option-text-active, var(--control-text-contrast));
+}

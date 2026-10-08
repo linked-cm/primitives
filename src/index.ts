@@ -40,6 +40,7 @@ import './components/Progress.js';
 import './components/NavigationMenu.js';
 import './components/Menubar.js';
 import './components/MultiSelect.js';
+import './components/Combobox.js';
 import './components/Spinner.js';
 import './components/ConfirmDialog.js';
 import './components/SkeletonLoader.js';
