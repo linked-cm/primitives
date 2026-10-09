@@ -1,5 +1,11 @@
 # @\_linked/primitives
 
+## 1.7.2
+
+### Patch Changes
+
+- [#72](https://github.com/linked-fw/primitives/pull/72) [`c82c202`](https://github.com/linked-fw/primitives/commit/c82c2023a5a0047c50d7696aa0b1649ec8d6344c) Thanks [@flyon](https://github.com/flyon)! - Build with `linked build`, the standard build for linked packages. The published `lib/` holds the same files as before; the `rimraf` and `copyfiles` dev dependencies are gone. `@types/node`, which the compiler config already relies on, is now declared as a dev dependency instead of arriving transitively.
+
 ## 1.7.1
 
 ### Patch Changes
